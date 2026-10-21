@@ -10,6 +10,8 @@ COMP 354 team assignment. QuickBite is a fictional online ordering and pickup pl
 |        | Scrum Master  |     |
 |        | Developer     |     |
 |        | Developer     |     |
+|        | Developer     |     |
+|        | Developer     |     |
 
 ## How we work
 
