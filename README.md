@@ -17,11 +17,9 @@ All four of us write code. The Product Owner and Scrum Master roles come on top 
 
 ## How we work
 
-- **Board:** the GitHub Project linked to this repo holds the Product Backlog and Sprint Backlog.
-- **Issues:** every Product Backlog Item and engineering task is an issue. Use the templates (User story, Bug, Technical task).
-- **Branches:** never commit to `main`. Create a branch per issue, named `<issue-number>-short-description`, for example `12-order-status-page`.
-- **Pull requests:** open a PR into `main`, link the issue with `Closes #<number>`, and get one approval from a teammate who did not write the code before merging.
-- **Definition of Done:** see [docs/definition-of-done.md](docs/definition-of-done.md). A PR is not merged until it meets it.
+- Work happens on branches and goes into `main` through a pull request.
+- Every PR needs one approval from a teammate who didn't write it.
+- Done means it meets our [Definition of Done](docs/definition-of-done.md).
 
 ## Running the app
 
