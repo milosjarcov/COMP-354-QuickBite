@@ -7,22 +7,22 @@ async function displayMenuItems() {
 
   if (!container) return;
 
-  container.textContent = "Loading menu items...";
-
-  // ?id=2 in the URL means a restaurant was clicked, so only show its menu
+  // ?id=2 in the URL means a restaurant was clicked. no id means nothing is picked yet
   const restaurantId = new URLSearchParams(location.search).get("id");
 
-  let query = db
-    .from("menu_items")
-    .select("id, restaurant_id, name, description, price, available")
-    .eq("available", true);
-
-  if (restaurantId) {
-    query = query.eq("restaurant_id", restaurantId);
-    showRestaurantName(restaurantId);
+  if (!restaurantId) {
+    container.textContent = "Choose a restaurant above to see its menu.";
+    return;
   }
 
-  const { data, error } = await query;
+  container.textContent = "Loading menu items...";
+  showRestaurantName(restaurantId);
+
+  const { data, error } = await db
+    .from("menu_items")
+    .select("id, restaurant_id, name, description, price, available")
+    .eq("restaurant_id", restaurantId)
+    .eq("available", true);
 
   if (error) {
     console.error("Error loading menu:", error);
@@ -58,8 +58,6 @@ async function displayMenuItems() {
 }
 
 async function showRestaurantName(restaurantId) {
-  document.getElementById("show-all").hidden = false;
-
   const { data } = await db.from("restaurants").select("name").eq("id", restaurantId).single();
 
   if (data) {
