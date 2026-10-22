@@ -13,8 +13,6 @@ We are building a small working piece of it in one sprint, using Scrum to plan a
 | Aren Jinbachian | Developer | [@arenJ1nbachian](https://github.com/arenJ1nbachian) |
 | Yoanna Nakhla | Developer | [@yoannanakhla7-ops](https://github.com/yoannanakhla7-ops) |
 
-All four of us write code. The Product Owner and Scrum Master roles come on top of development work, not instead of it.
-
 ## How we work
 
 - Work happens on branches and goes into `main` through a pull request.
