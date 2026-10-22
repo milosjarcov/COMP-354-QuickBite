@@ -35,9 +35,17 @@
   No pickup time selected.
 </p>
 </section>
+  <section class="container mt-4">
+    <h3>Place Order</h3>
+    <label for="customer-name" class="form-label">Your name</label>
+    <input id="customer-name" class="form-control mb-2" />
+    <button id="place-order" class="btn btn-success">Place order</button>
+    <p id="order-message" class="text-danger mt-2"></p>
+  </section>
   <script type="module" src="js/main.js"></script>
   <script type="module" src="js/cartUI.js"></script>
   <script type="module" src="js/menuCart.js"></script>
+  <script type="module" src="js/placeOrder.js"></script>
   <script type="module">
   import { setupPickupTime } from "./js/pickupTime.js";
   setupPickupTime();
