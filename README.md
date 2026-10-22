@@ -21,6 +21,4 @@ All four of us write code. The Product Owner and Scrum Master roles come on top 
 - Every PR needs one approval from a teammate who didn't write it.
 - Done means it meets our [Definition of Done](docs/definition-of-done.md).
 
-## Running the app
 
-To be filled in once the stack is chosen.
