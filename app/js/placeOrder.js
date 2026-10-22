@@ -1,5 +1,5 @@
 import { db } from "./supabaseClient.js";
-import { getCart, clearCart } from "./cart.js";
+import { getCart, getCartTotal, clearCart } from "./cart.js";
 import { isValidPickupTime } from "./pickupTime.js";
 import { renderCart } from "./cartUI.js";
 
@@ -14,6 +14,7 @@ async function placeOrder() {
   const pickupTime = document.getElementById("pickup-time").value;
 
   message.textContent = "";
+  document.getElementById("order-confirmation").hidden = true;
 
   if (items.length === 0) {
     message.textContent = "Your cart is empty.";
@@ -64,8 +65,28 @@ async function placeOrder() {
     return;
   }
 
+  showConfirmation(orderId, pickupTime, items);
   clearCart();
   renderCart();
   button.disabled = false;
-  message.textContent = "";
+}
+
+function showConfirmation(orderId, pickupTime, items) {
+  const list = document.getElementById("confirm-items");
+  list.replaceChildren();
+
+  for (const item of items) {
+    const li = document.createElement("li");
+    li.textContent = `${item.quantity} x ${item.name} - $${(item.price * item.quantity).toFixed(2)}`;
+    list.appendChild(li);
+  }
+
+  document.getElementById("confirm-number").textContent = orderId.slice(0, 8).toUpperCase();
+  document.getElementById("confirm-time").textContent = new Date(pickupTime).toLocaleString([], {
+    weekday: "short",
+    hour: "numeric",
+    minute: "2-digit"
+  });
+  document.getElementById("confirm-total").textContent = getCartTotal().toFixed(2);
+  document.getElementById("order-confirmation").hidden = false;
 }

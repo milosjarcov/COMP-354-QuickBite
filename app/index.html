@@ -41,6 +41,15 @@
     <input id="customer-name" class="form-control mb-2" />
     <button id="place-order" class="btn btn-success">Place order</button>
     <p id="order-message" class="text-danger mt-2"></p>
+
+    <div id="order-confirmation" class="alert alert-success" hidden>
+      <h4>Order placed!</h4>
+      <p>Order number: <strong id="confirm-number"></strong></p>
+      <p>Pickup time: <span id="confirm-time"></span></p>
+      <p>Status: Received</p>
+      <ul id="confirm-items"></ul>
+      <p>Total: $<span id="confirm-total"></span></p>
+    </div>
   </section>
   <script type="module" src="js/main.js"></script>
   <script type="module" src="js/cartUI.js"></script>
