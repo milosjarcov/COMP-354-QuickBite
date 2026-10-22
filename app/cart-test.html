@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>QuickBite Cart Test</title>
+</head>
+<body>
+  <h1>QuickBite Cart Test</h1>
+
+  <h2>Menu</h2>
+  <div id="test-menu"></div>
+
+  <h2>Your Cart</h2>
+  <div id="cart-items"></div>
+  <p>Total: $<span id="cart-total">0.00</span></p>
+  <button id="clear-cart">Clear Cart</button>
+
+<h2>Select Pickup Time</h2>
+
+<label for="pickup-time">Pickup time:</label>
+<select id="pickup-time" required></select>
+
+<p id="selected-pickup-time">No pickup time selected.</p>
+
+<button id="test-place-order">Test Place Order</button>
+<p id="order-message"></p>
+
+  <script type="module">
+    import { createAddButton } from "./js/cartUI.js";
+
+import {
+  setupPickupTime,
+  isValidPickupTime
+} from "./js/pickupTime.js";
+
+import { getCart } from "./js/cart.js";
+
+setupPickupTime();
+
+document.getElementById("test-place-order").addEventListener("click", () => {
+  const pickupTime = document.getElementById("pickup-time").value;
+  const message = document.getElementById("order-message");
+
+  if (getCart().length === 0) {
+    message.textContent = "Add items to your cart first.";
+    return;
+  }
+
+  if (!isValidPickupTime(pickupTime)) {
+    message.textContent = "Please select a valid future pickup time.";
+    return;
+  }
+
+  message.textContent = "Order details validated. Ready to place order.";
+});
+
+    const menuItems = [
+      { id: 1, restaurant_id: 1, name: "Pho", price: 14.99 },
+      { id: 2, restaurant_id: 1, name: "Spring Rolls", price: 6.50 },
+      { id: 3, restaurant_id: 2, name: "Pizza", price: 16.00 }
+    ];
+
+    const menu = document.getElementById("test-menu");
+
+    menuItems.forEach(item => {
+      const row = document.createElement("p");
+      row.append(`${item.name} - $${item.price.toFixed(2)} `);
+      row.appendChild(createAddButton(item));
+      menu.appendChild(row);
+    });
+  </script>
+</body>
+</html>
